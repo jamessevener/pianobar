@@ -17,7 +17,12 @@ ifeq (${CC},cc)
 	else ifeq (${OS},OpenBSD)
 		CC:=cc -std=c99
 	else
-		CC:=c99
+		COMPILER := $(which c99)
+		ifeq (${COMPILER},)
+			CC:= gcc
+		else
+			CC:=c99
+		endif
 	endif
 endif
 
